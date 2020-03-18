@@ -7,7 +7,7 @@ categories: jekyll update
 {% include math.html %}
 Hi there!
 
-Due to a certain pandemic keeping me indoors a lot these days, I decided to set up a personal website using [GitHub Pages](https://pages.github.com/).
+Due to a certain beverage-named pandemic keeping me indoors a lot these days, I decided to set up a personal website using [GitHub Pages](https://pages.github.com/).
 If I find that I have something enlightening to share with the world, I might post it on here. No promises though.
 
 The rest of this post is really just about testing some stuff.
