@@ -1,0 +1,9 @@
+# Jekyll
+_site
+.sass-cache
+.jekyll-metadata
+.jekyll-cache
+
+# Bundler
+vendor
+.bundle
