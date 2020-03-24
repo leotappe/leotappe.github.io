@@ -4,7 +4,6 @@ title:  "Hello World!"
 date:   2020-03-18 13:16:17 +0100
 categories: jekyll update
 ---
-{% include math.html %}
 Hi there!
 
 Due to a certain beverage-named pandemic keeping me indoors a lot these days, I decided to set up a personal website using [GitHub Pages](https://pages.github.com/).
