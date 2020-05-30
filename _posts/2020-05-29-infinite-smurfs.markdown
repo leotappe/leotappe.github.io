@@ -11,7 +11,9 @@ before. That one's not quite as easy and requires a bit of mathematics.
 
 # Finite Version
 
-Gargamel has captured \\(n\\) smurfs and forces them to participate in a game:
+[Gargamel](https://en.wikipedia.org/wiki/Gargamel) has captured \\(n\\)
+[smurfs](https://en.wikipedia.org/wiki/The_Smurfs#Smurfs) and forces them to
+participate in a game:
 He arranges the smurfs in a line and makes them all face in the same direction.
 In particular, the first smurf can see all the other smurfs, the second smurf
 can see all other smurfs except the first one, and so on, until finally the
