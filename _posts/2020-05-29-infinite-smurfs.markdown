@@ -221,7 +221,7 @@ which states the following:
 > is satisfiable.
 
 Aha! This lets us reason about the infinite set \\(\mathcal{S}\\) in terms of
-its finite subsets. We now only have the prove that every finite subset
+its finite subsets. We now only have to prove that every finite subset
 \\(\mathcal{T} \subset \mathcal{S}\\) is satisfiable. So why is this the
 case? Well, notice that any such finite subset corresponds to a formula in
 [2-CNF](https://en.wikipedia.org/wiki/2-satisfiability): each clause consists
