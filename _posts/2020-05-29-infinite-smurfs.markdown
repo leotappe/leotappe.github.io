@@ -1,13 +1,13 @@
 ---
 layout: post
 title:  "Infinite Smurfs"
-date:   2020-05-29 18:59:00 +0100
+date:   2020-05-30 10:00:00 +0100
 categories: riddles smurfs logic compactness infinity
 ---
 So I recently came across an interesting riddle. It comes in two flavors, a
 finite version and an infinite version. The first version is well-known and
 simply a little bit of a brain teaser, but I hadn't seen the second version
-before. That one's not as easy and requires a bit of mathematics.
+before. That one's not quite as easy and requires a bit of mathematics.
 
 # Finite Version
 
@@ -18,7 +18,7 @@ can see all other smurfs except the first one, and so on, until finally the
 \\(n\\)th smurf can't see any other smurf. For visualization purposes, we set
 \\(n = 10\\) below.
 
-\\[s_1 \, s_2 \, s_3 \, s_4 \, s_5 \, s_6 \, s_7 \, s_8 \, s_9 \, s_{10} \\]
+\\[\overrightarrow{s_1 \, s_2 \, s_3 \, s_4 \, s_5 \, s_6 \, s_7 \, s_8 \, s_9 \, s_{10}} \\]
 
 Now, Gargamel has devised the following evil scheme: he will put a hat on every
 smurf, each one either red or blue, and then he will force the smurfs to guess
@@ -118,7 +118,7 @@ little more abstract.
 Try to think about it on your own if you want, and then you can check the
 solution below.
 
-#### Solution
+#### Solution (Part 1/2)
 Observe the following: a smurf can see all of the
 infinitely many hats in front of him, and he hears all the answers of the
 smurfs behind him. So he has one bit of information for all smurfs except
@@ -137,34 +137,34 @@ together with the (infinitely long) suffix
 \\[\alpha_{n + 1}, \alpha_{n + 2}, \dots\\]
 
 uniquely determines \\(\alpha_n\\). More formally, we would like to find a
-subset of binary sequences \\(S \subseteq \\{0, 1\\}^\mathbb{N}\\) with
+subset of binary sequences \\(A \subseteq \\{0, 1\\}^\mathbb{N}\\) with
 the property
 
 \\[
     \forall \alpha, \beta \in \\{0, 1\\}^\mathbb{N}: \alpha \text{ and } \beta
     \text{ differ in exactly one position } \implies
-    (\alpha \in S \iff \beta \not\in S)
+    (\alpha \in A \iff \beta \not\in A)
 \\]
 
-In words, we want a set \\(S\\) such that for all pairs of sequences that differ
-in exactly one position, exactly one of the two sequences is in \\(S\\). Why do
+In words, we want a set \\(A\\) such that for all pairs of sequences that differ
+in exactly one position, exactly one of the two sequences is in \\(A\\). Why do
 we want this again? Because when Gargamel picks a sequence \\(\alpha\\) for the
 smurfs, the first smurf could look at the tail
 
-\\[\alpha_2, \alpha_3, \dots\\]
+\\[\alpha_2, \alpha_3, \alpha_4, \dots\\]
 
 and conclude exactly for which \\(\beta_1 \in \\{0, 1\\}\\) the sequence
 
-\\[\beta_1, \alpha_2, \alpha_3, \dots\\]
+\\[\beta_1, \alpha_2, \alpha_3, \alpha_4, \dots\\]
 
-is contained in \\(S\\). By answering accordingly, he could then let the second
+is contained in \\(A\\). By answering accordingly, he could then let the second
 smurf know his hat color, as the answer \\(\beta_1\\) of the first smurf in
 conjunction with the tail \\(\alpha_3, \alpha_4, \dots\\) observed by the second
 smurf uniquely determines the \\(\beta_2\\) such that the sequence
 
 \\[\beta_1, \beta_2, \alpha_3, \alpha_4, \dots \\]
 
-is in \\(S\\). And as this sequence couldn't differ from
+is in \\(A\\). And as this sequence couldn't differ from
 
 \\[\beta_1, \alpha_2, \alpha_3, \alpha_4, \dots \\]
 
@@ -174,6 +174,104 @@ save every smurf, except maybe the first one, who again would have to hope that
 his answer is correct.
 
 So have we solved the riddle? Well, we have solved it *if* we can find such
-a set \\(S\\) satisfying the desirata mentioned above. And that is actually
-the hard part of this riddle: proving that such a set \\(S\\) must exist.
-For that, we need a little bit of formal logic.
+a set \\(A\\) satisfying the desirata mentioned above. And that is actually
+the hard part of this riddle: proving that such a set \\(A\\) must exist.
+
+#### Solution (Part 2/2)
+
+The existence of \\(A\\) is not obvious. We could try a constructive approach,
+but this would likely soon fail. Instead, the problem lends itself naturally to
+the language of propositional logic. Essentially, we need to make
+a binary decision for every \\(\alpha \in \\{0, 1\\}^\mathbb{N}\\): do we
+include it in \\(A\\) or not? So let these decision variables be our set of
+propositonal variables
+
+\\[X = \\{x_\alpha \mid \alpha \in \\{0, 1\\}^\mathbb{N}\\} \\]
+
+Note that this already is an
+[uncountably large](https://en.wikipedia.org/wiki/Uncountable_set) amount of
+propositional variables! An assignment to these variables will then induce a
+set \\(A\\) by simply including those \\(\alpha\\) in \\(A\\) for which
+\\(x_\alpha\\) is set to 1.
+
+Okay, now that we have the variables, we need some formulas. In particular,
+we need to encode the constraint that for each pair of sequences that differ in
+exactly one position, exactly one of them is included in \\(A\\). So if
+\\(\alpha\\) and \\(\beta\\) are two such sequences, this can be expressed with
+the formula
+
+\\[
+    F_{\alpha, \beta} = (x_\alpha \lor x_\beta) \land
+    (\lnot x_\alpha \lor \lnot x_\beta)
+\\]
+
+And now, the existence of the desired set \\(A\\) is equivalent to the
+satisfiability of the (uncountably large) set of formulas
+
+\\[\mathcal{S} = \\{F_{\alpha, \beta} \mid \alpha \text{ and } \beta 
+\text{ differ in exactly one position}\\}\\]
+
+At first glance, it doesn't seem like we've made much progress. How would we
+know whether an infinite set of formulas is satisfiable? Fortunately, some
+clever logicians already came up with the
+[compactness theorem](https://en.wikipedia.org/wiki/Compactness_theorem),
+which states the following:
+
+> A set of formulas is satisfiable if and only if every finite subset of it
+> is satisfiable.
+
+Aha! This lets us reason about the infinite set \\(\mathcal{S}\\) in terms of
+its finite subsets. We now only have the prove that every finite subset
+\\(\mathcal{T} \subset \mathcal{S}\\) is satisfiable. So why is this the
+case? Well, notice that any such finite subset corresponds to a formula in
+[2-CNF](https://en.wikipedia.org/wiki/2-satisfiability): each clause consists
+of exactly two literals. And luckily, there is a nice characterization of
+satisfiability for 2-CNF formulas: Precisely those 2-CNF formulas are satisfiable
+whose implication graph is consistent. What does this mean? It means that if you
+construct the graph whose nodes are the literals of the formula, and you
+introduce for each clause of literals \\(L_1 \lor L_2\\) the directed edges
+\\(\overline{L_1} \rightarrow L_2\\) and
+\\(\overline{L_2} \rightarrow L_1\\), that then no literal \\(L\\) is in the
+same
+[strongly connected component](https://en.wikipedia.org/wiki/Strongly_connected_component)
+as its negation \\(\overline{L}\\).
+
+Phew, that's a lot to take in, but we're almost there: we just need to give 
+an argument why any finite subset of \\(\mathcal{S}\\) corresponds to a 2-CNF
+formula with a consistent implication graph. So let's take a look at what such
+an implication graph looks like in our case. Our formulas are all of the
+form
+
+\\[
+    (x_\alpha \lor x_\beta) \land
+    (\lnot x_\alpha \lor \lnot x_\beta)
+\\]
+
+So we have the following edges in our graph:
+
+\\[
+    \lnot x_\alpha \rightarrow x_\beta \newline
+    \lnot x_\beta \rightarrow x_\alpha \newline
+    x_\alpha \rightarrow \lnot x_\beta \newline
+    x_\beta \rightarrow \lnot x_\alpha
+\\]
+
+Notice that all edges go between positive literals and negative literals,
+never between two positive literals or two negative literals. So can it be
+that the implication graph is inconsistent? This would imply that there
+is a path from a variable \\(x_\alpha\\) to its negation \\(\lnot x_\alpha\\).
+By our observation from above that each edge goes between a negative and
+a positive variable, such a path would have to have odd length. Furthermore,
+we only have edges between variables that correspond to sequences that differ
+in exactly one position. So each step in a path changes exactly one position
+of the sequence, and thus an odd path would correspond to an odd number of
+changes. But this means it is impossible for there to be a path
+\\(x_\alpha \rightsquigarrow \lnot x_\alpha\\), as an odd number of changes
+can never return the sequence \\(\alpha\\) back to itself. We can conclude
+that the implication graph must be consistent. And as this holds for
+every finite subset of \\(\mathcal{S}\\), by the compactness theorem,
+\\(\mathcal{S}\\) must be satisfiable, and hence, the desired set must exist.
+
+And that's it! We have found a way to save all but possibly one smurf: simply
+pick a suitable set \\(A\\) (the existence of which we're now sure of) and
+follow the strategy outlined above.
