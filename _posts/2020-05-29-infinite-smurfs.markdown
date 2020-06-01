@@ -176,7 +176,7 @@ save every smurf, except maybe the first one, who again would have to hope that
 his answer is correct.
 
 So have we solved the riddle? Well, we have solved it *if* we can find such
-a set \\(A\\) satisfying the desirata mentioned above. And that is actually
+a set \\(A\\) satisfying the desiderata mentioned above. And that is actually
 the hard part of this riddle: proving that such a set \\(A\\) must exist.
 
 #### Solution (Part 2/2)
